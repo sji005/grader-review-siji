@@ -11,6 +11,12 @@ class IsMoon implements StringChecker {
   }
 }
 
+class China implements StringChecker {
+  public boolean checkString(String s){
+    return !s.equals("China");
+  }
+}
+
 public class TestListExamples {
   @Test(timeout = 500)
   public void testMergeRightEnd() {
@@ -23,15 +29,17 @@ public class TestListExamples {
 
   @Test(timeout = 500)
   public void testFilter(){
+      China check = new China();
       List<String> input1 = new ArrayList<String>();
       input1.add("China");
-      input1.add("china");
+      input1.add("China");
       input1.add("Mother");
-      input1 = ListExamples.filter(input1, sc);
+      input1 = ListExamples.filter(input1, check);
       assertEquals("Mother", input1.get(0));
       input1.add("Haha");
-      input1 = ListExamples.filter(input1, sc);
+      input1 = ListExamples.filter(input1, check);
       assertEquals("Mother", input1.get(0));
       assertEquals("Haha", input1.get(1));
   }
 }
+
